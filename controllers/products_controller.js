@@ -5,24 +5,30 @@ const router = express.Router()
 const Product = require('../models/product')
 
 //routes
-router.get('/all-products', (req, res) => {
-    Product //refering to the Product pbject that I declared in models/product
+router.get('/', (req, res) => {
+    Product //refering to the Product object that I declared in models/product
         .findAll() //getting the findAll function from the models/product
         .then(products => res.json(products)) //getting the records, converting to json and sending back to the client
 })
 
-router.post('/all=products', (req, res) => {
-    const name = req.body.name
+router.get('/:id', (req, res) => {
+    const productId = req.params.id
+    Product
+        .findById(productId)
+        .then(products => res.json(products))
+})
+
+router.post('/', (req, res) => {
+    const title = req.body.title
     const image = req.body.image
     const price = req.body.price
-    const stock = req.body.stock
 
     Product
-        .create(name, image, price, stock)
+        .create(title, image, price, description)
         .then(product => res.json(product))
 })
 
-router.delete('/all-products/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const productId = req.params.id
 
     Product
