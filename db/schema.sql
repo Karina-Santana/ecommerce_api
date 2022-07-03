@@ -24,6 +24,7 @@ CREATE TABLE users(
 
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
+    product_id TEXT,
     title TEXT,
     image TEXT,
     price INTEGER,

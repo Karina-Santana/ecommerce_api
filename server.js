@@ -15,6 +15,7 @@ const sessions = require('./middlewares/sessions')
 const productsController = require('./controllers/products_controller')
 const usersController = require('./controllers/users_controller')
 const sessionsController = require('./controllers/sessions_controller')
+const cartsController = require('./controllers/carts_controller')
 
 app.use(logger)
 
@@ -28,3 +29,4 @@ app.use('/api/users', usersController)
 
 app.use('/api/sessions', sessionsController)
 
+app.use('/api/cart', cartsController)

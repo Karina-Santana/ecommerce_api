@@ -22,18 +22,22 @@ router.post('/', (req, res) => {
     const title = req.body.title
     const image = req.body.image
     const price = req.body.price
+    const rating = req.body.rating
+    const numReviews = req.body.numReviews
+    const countInStock = req.body.countInStock
+    const category = req.body.category
 
     Product
-        .create(title, image, price, description)
+        .create(title, image, price, rating, numReviews, countInStock, category)
         .then(product => res.json(product))
 })
 
-router.delete('/:id', (req, res) => {
-    const productId = req.params.id
+// router.delete('/:id', (req, res) => {
+//     const productId = req.params.id
 
-    Product
-        .delete(productId)
-        .then(() => res.json({ message: 'deleted successfully' }))
-})
+//     Product
+//         .delete(productId)
+//         .then(() => res.json({ message: 'deleted successfully' }))
+// })
 
 module.exports = router

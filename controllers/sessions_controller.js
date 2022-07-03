@@ -19,9 +19,18 @@ router.post('/', (req, res) => {
             if (user && isValidPassword) {
                 //log the user in
                 req.session.userId = user.id  //it's storing the user Id in the session
-                res.json({ userName: user.name }) //sending the user name back to the front-end
+                res.json({
+                    userId: user.id,
+                    userName: user.name,
+                    email: user.email
+                }) //sending the user name back to the front-end
             }
         })
 })
+
+router.delete('/', (req, res) => {
+    req.session.userId = undefined;
+    res.json({ message: 'logout successfully' });
+});
 
 module.exports = router
