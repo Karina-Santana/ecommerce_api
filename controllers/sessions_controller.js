@@ -12,9 +12,9 @@ router.post('/', (req, res) => {
     const { email, password } = req.body
 
     User
-        .findByEmail(email)
+        .findByEmail(email) //from models/user
         .then(user => {
-            const isValidPassword = bcrypt.compareSync(password, user, password_digest) //checking the password
+            const isValidPassword = bcrypt.compareSync(password, user.password_digest) //checking the password
 
             if (user && isValidPassword) {
                 //log the user in
@@ -28,9 +28,9 @@ router.post('/', (req, res) => {
         })
 })
 
-router.delete('/', (req, res) => {
-    req.session.userId = undefined;
-    res.json({ message: 'logout successfully' });
-});
+// router.delete('/', (req, res) => {
+//     req.session.userId = undefined;
+//     res.json({ message: 'logout successfully' })
+// })
 
 module.exports = router
