@@ -15,7 +15,7 @@ router.get('/:id', (req, res) => {
     const productId = req.params.id
     Product
         .findById(productId)
-        .then(products => res.json(products))
+        .then(product => res.json(product))
 })
 
 router.post('/', (req, res) => {
