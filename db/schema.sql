@@ -32,4 +32,4 @@ CREATE TABLE carts(
     image TEXT,
     price INTEGER,
     qty INTEGER
-)
+);

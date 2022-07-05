@@ -8,6 +8,15 @@ const Cart = {
         return db.query(sql).then((dbRes) => dbRes.rows)
     },
 
+    findById: productId => {
+        const sql = `SELECT * FROM carts 
+        WHERE id = $1
+        `
+        return db
+            .query(sql, [productId]) //it brings back the data (carts table) as a query (promise)
+            .then(dbRes => dbRes.rows[0]) //when the data comes, get the all records 
+    },
+
     create: (product_id, title, image, price, qty) => {
         const sql = `
             INSERT INTO carts(product_id, title, image, price, unit)

@@ -9,14 +9,18 @@ router.post('/', (req, res) => {
         .then((product) => res.json(product))
 })
 
-router.get('/', (req, res) => {
-    Cart.findAll().then((products) => res.json(products));
-});
+router.get('/:id', (req, res) => {
+    const productId = req.params.id
+
+    Cart
+        .findById(productId)
+        .then(product => res.json(product))
+})
 
 router.delete('/:id', (req, res) => {
-    const itemId = req.params.id;
+    const productId = req.params.id;
 
-    Cart.delete(itemId).then(() => res.json({ message: 'delete successfully' }));
-});
+    Cart.delete(productId).then(() => res.json({ message: 'delete successfully' }));
+})
 
 module.exports = router

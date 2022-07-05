@@ -26,9 +26,10 @@ router.post('/', (req, res) => {
     const num_reviews = req.body.num_reviews
     const count_in_stock = req.body.count_in_stock
     const category = req.body.category
+    const image2 = req.body.image2
 
     Product
-        .create(title, image, price, rating, num_reviews, count_in_stock, category)
+        .create(title, image, price, rating, num_reviews, count_in_stock, category, image2)
         .then(product => res.json(product))
 })
 
