@@ -8,14 +8,14 @@ const Cart = {
         return db.query(sql).then((dbRes) => dbRes.rows)
     },
 
-    create: (product_id, title, image, price, unit) => {
+    create: (product_id, title, image, price, qty) => {
         const sql = `
             INSERT INTO carts(product_id, title, image, price, unit)
             VALUES ($1, $2, $3, $4, $5)
             RETURNING *
         `
         return db
-            .query(sql, [product_id, title, image, price, unit])
+            .query(sql, [product_id, title, image, price, qty])
             .then((dbRes) => dbRes.rows[0])
     },
 

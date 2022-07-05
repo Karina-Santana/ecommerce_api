@@ -3,8 +3,9 @@ const router = express.Router()
 
 const Cart = require('../models/cart.js')
 router.post('/', (req, res) => {
-    const { id, product_id, title, image, price, unit } = req.body
-    Cart.create(id, product_id, title, image, price, unit)
+    const { product_id, title, image, price, unit } = req.body
+
+    Cart.create(product_id, title, image, price, unit)
         .then((product) => res.json(product))
 })
 
