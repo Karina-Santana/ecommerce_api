@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 3001
 
 app.listen(port, () => console.log(`server is listening on port: ${port}`))
 
@@ -33,3 +33,12 @@ app.use('/api/sessions', sessionsController)
 app.use('/api/cart', cartsController)
 
 // app.use('/api/orders', ordersController)
+
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path')
+    app.use(express.static(path.join(__dirname, 'build')));
+
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    });
+}
